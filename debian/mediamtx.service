@@ -1,0 +1,12 @@
+[Unit]
+Description=MediaMTX Service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=30
+ExecStart=/usr/local/bin/mediamtx /etc/mediamtx/mediamtx.yml
+
+[Install]
+WantedBy=multi-user.target
