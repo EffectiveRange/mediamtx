@@ -10,7 +10,7 @@ if [ -z "$VERSION" ] || [ -z "$ARCH" ]; then
   exit 1
 fi
 
-ARCHIVE="binaries/mediamtx_${VERSION}_linux_${ARCH}.tar.gz"
+ARCHIVE="binaries/mediamtx_v${VERSION}_linux_${ARCH}.tar.gz"
 if [ ! -f "$ARCHIVE" ]; then
   echo "Archive not found: $ARCHIVE"
   exit 1
