@@ -25,8 +25,6 @@ case "$VARIANT" in
   rpi|mediamtx-rpi)
     PACKAGE_NAME="mediamtx-rpi"
     CONFIG_SOURCE="$REPO_ROOT/mediamtx-rpi.yml"
-    SERVICE_SOURCE="$REPO_ROOT/debian/mediamtx-rpi.service"
-    SERVICE_NAME="mediamtx-rpi.service"
     ;;
   *)
     echo "Invalid variant: $VARIANT"
@@ -84,7 +82,7 @@ set -e
 sed -ri 's/camera_auto_detect=1/camera_auto_detect=0/g' /boot/firmware/config.txt
 echo dtoverlay=imx708,cam0 | tee -a /boot/firmware/config.txt
 echo dtoverlay=imx708,cam1 | tee -a /boot/firmware/config.txt
-systemctl enable mediamtx-rpi.service
+systemctl enable mediamtx.service
 
 reboot
 
