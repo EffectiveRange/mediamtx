@@ -46,12 +46,17 @@ jobs:
         name: binaries
         path: binaries
 
-    - run: bash debian/package.sh "${GITHUB_REF_NAME#v}" "${{ matrix.arch }}"
+    - run: |
+        mkdir -p packages
+        bash debian/package.sh "${GITHUB_REF_NAME#v}" "${{ matrix.arch }}"
+        mv dist/*.deb packages/
+        bash debian/package.sh "${GITHUB_REF_NAME#v}" "${{ matrix.arch }}" rpi
+        mv dist/*.deb packages/
 
     - uses: actions/upload-artifact@v7
       with:
         name: packages-${{ matrix.arch }}
-        path: dist/*.deb
+        path: packages/*.deb
 
   github_release:
     needs: packages
